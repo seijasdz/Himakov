@@ -2,11 +2,16 @@ import numpy
 from pomegranate import DiscreteDistribution
 from pomegranate import HiddenMarkovModel
 from pomegranate import State
+from helpers import with_variations, transition_maker
+
+
 a = 'a'
 c = 'c'
 g = 'g'
 t = 't'
 p = 'p'
+
+# Replace this sequence to make predictions
 data = [a,c,a,g,c,c,a,g,c,g,c,g,g,g,a,t,t,t,t,c,a,a,t,t,a,t,t,g,t,t,c,c,g,c,c,c,a,a,t,c,g,g,g,a,a,a,a,g,a,c,t,g,t,g,c,t,t,a,t,a,a,a,g,a,c,g,g,c,t,g,c,g,g,c,g,g,g,g,c,t,a,g,g,a,g,c,t,c,g,t,t,t,t,t,c,t,c,c,c,c,g,c,c,g]
 
 numpy.random.seed(0)
@@ -83,11 +88,6 @@ st_i_tat6 = State(DiscreteDistribution({'a': 0.25, 'c': 0.25, 'g': 0.25, 't': 0.
 st_d_tat6 = State(None, name='d_tat6')
 
 
-def with_variations(dist, name):
-    st = State(dist, name=name)
-    sti = State(DiscreteDistribution({'a': 0.25, 'c': 0.25, 'g': 0.25, 't': 0.25}), name='i_' + name)
-    std = State(None, name='d_' + name)
-    return st, sti, std
 
 
 st_inr1, st_i_inr1, st_d_inr1 = with_variations(DiscreteDistribution({'c': 0.5, 't': 0.5}), 'inr1')
@@ -199,10 +199,7 @@ model.add_transition(st_d_bre7, st_tat1, 0.8)
 model.add_transition(st_d_bre7, st_d_tat1, 0.10)
 
 
-def transition_maker(hmmodel, states, next_state_data):
-    for state in states:
-        for next_data in next_state_data:
-            hmmodel.add_transition(state, next_data[0], next_data[1])
+
 
 
 ins_prob = 0.005
