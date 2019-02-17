@@ -15,7 +15,7 @@ data = [g,c,t,g,g,c,t,a,c,t,a,c,t,g,c,a,g,g,t,c,t,c,c,a,g,c,a,g,a,g,t,c,t,t,c,a,
 numpy.random.seed(0)
 numpy.set_printoptions(suppress=True)
 random_distribution = DiscreteDistribution({'a': 0.25, 'c': 0.25, 'g': 0.25, 't': 0.25})
-
+close_py_dist = DiscreteDistribution({'c': 0.5, 't': 0.5})
 states = []
 
 st_back = State(random_distribution, name='back')
@@ -23,117 +23,100 @@ st_back = State(random_distribution, name='back')
 
 st_start_triplet0 = State(DiscreteDistribution({'a': 1}), name='start_tri0')
 #states.append(st_start_triplet0)
-
 st_start_triplet1 = State(DiscreteDistribution({'t': 1}), name='start_tri1')
 #states.append(st_start_triplet1)
-
 st_start_triplet2 = State(DiscreteDistribution({'g': 1}), name='start_tri2')
 #states.append(st_start_triplet2)
 
 st_exon_triplet0 = State(random_distribution, name='exon_tri0')
 states.append(st_exon_triplet0)
-
 st_exon_triplet1 = State(random_distribution, name='exon_tri1')
 states.append(st_exon_triplet1)
-
 st_exon_triplet2 = State(random_distribution, name='exon_tri2')
 states.append(st_exon_triplet2)
 
 
 st_intron_g0 = State(DiscreteDistribution({'g': 1}), name='intron_g0')
 states.append(st_intron_g0)
-
 st_intron_t0 = State(DiscreteDistribution({'t': 1}), name='intron_t0')
 states.append(st_intron_t0)
-
 st_intron_a0 = State(DiscreteDistribution({'a': 0.6, 'g': 0.4}), name='ia0')
 states.append(st_intron_a0)
-
 st_intron_a20 = State(DiscreteDistribution({'a': 0.9, 't': 0.1}), name='ia20')
 states.append(st_intron_a20)
-
-st_intron_g20 = State(DiscreteDistribution({'g': 1}), name='ig20')
+st_intron_g20 = State(DiscreteDistribution({'g': 0.9, 't': 0.1}), name='ig20')
 states.append(st_intron_g20)
-
-st_intron_t20 = State(DiscreteDistribution({'t': 1}), name='it20')
+st_intron_t20 = State(DiscreteDistribution({'t': 0.9, 'g': 0.1}), name='it20')
 states.append(st_intron_t20)
-
 st_intron_0 = State(random_distribution, name='intron_0')
 states.append(st_intron_0)
 
+st_intron_0_py0 = State(close_py_dist, name='i0cpy0')
+st_intron_0_py1 = State(close_py_dist, name='i0cpy1')
+st_intron_0_py2 = State(close_py_dist, name='i0cpy2')
+st_intron_0_py3 = State(close_py_dist, name='i0cpy3')
+st_intron_0_fill = State(DiscreteDistribution({'c': 0.49, 't': 0.49, 'a': 0.2}), name='i0fill')
+
 st_intron_0c = State(DiscreteDistribution({'c': 0.5, 't': 0.5}), name='intron0c')
 states.append(st_intron_0c)
-
 st_intron_0a = State(DiscreteDistribution({'a': 1}), name='intron0a')
 states.append(st_intron_0a)
-
 st_intron_0g = State(DiscreteDistribution({'g': 1}), name='intron0g')
 states.append(st_intron_0g)
 
 
 st_intron_g1 = State(DiscreteDistribution({'g': 1}), name='intron_g1')
 states.append(st_intron_g1)
-
 st_intron_t1 = State(DiscreteDistribution({'t': 1}), name='intron_t1')
 states.append(st_intron_t1)
-
-
 st_intron_a1 = State(DiscreteDistribution({'a': 0.6, 'g': 0.4}), name='ia1')
 states.append(st_intron_a1)
-
 st_intron_a21 = State(DiscreteDistribution({'a': 0.9, 't': 0.1}), name='ia21')
 states.append(st_intron_a21)
-
-st_intron_g21 = State(DiscreteDistribution({'g': 1}), name='ig21')
+st_intron_g21 = State(DiscreteDistribution({'g': 0.9, 't': 0.1}), name='ig21')
 states.append(st_intron_g21)
-
-st_intron_t21 = State(DiscreteDistribution({'t': 1}), name='it21')
+st_intron_t21 = State(DiscreteDistribution({'t': 0.9, 'g': 0.1}), name='it21')
 states.append(st_intron_t21)
-
-
-
 st_intron_1 = State(random_distribution, name='intron_1')
 states.append(st_intron_1)
+st_intron_1_py0 = State(close_py_dist, name='i1cpy0')
+st_intron_1_py1 = State(close_py_dist, name='i1cpy1')
+st_intron_1_py2 = State(close_py_dist, name='i1cpy2')
+st_intron_1_py3 = State(close_py_dist, name='i1cpy3')
+st_intron_1_fill = State(DiscreteDistribution({'c': 0.49, 't': 0.49, 'a': 0.2}), name='i1fill')
 
 st_intron_1c = State(DiscreteDistribution({'c': 0.5, 't': 0.5}), name='intron1c')
 states.append(st_intron_1c)
-
 st_intron_1a = State(DiscreteDistribution({'a': 1}), name='intron1a')
 states.append(st_intron_1a)
-
 st_intron_1g = State(DiscreteDistribution({'g': 1}), name='intron1g')
 states.append(st_intron_1g)
 
+
 st_intron_g2 = State(DiscreteDistribution({'g': 1}), name='intron_g2')
 states.append(st_intron_g2)
-
 st_intron_t2 = State(DiscreteDistribution({'t': 1}), name='intron_t2')
 states.append(st_intron_t2)
-
-
 st_intron_a2 = State(DiscreteDistribution({'a': 0.6, 'g': 0.4}), name='ia2')
 states.append(st_intron_a2)
-
 st_intron_a22 = State(DiscreteDistribution({'a': 0.9, 't': 0.1}), name='ia22')
 states.append(st_intron_a22)
-
-st_intron_g22 = State(DiscreteDistribution({'g': 1}), name='ig22')
+st_intron_g22 = State(DiscreteDistribution({'g': 0.9, 't': 0.1}), name='ig22')
 states.append(st_intron_g22)
-
-st_intron_t22 = State(DiscreteDistribution({'t': 1}), name='it22')
+st_intron_t22 = State(DiscreteDistribution({'t': 0.9, 'g': 0.1}), name='it22')
 states.append(st_intron_t22)
-
-
-
 st_intron_2 = State(random_distribution, name='intron_2')
 states.append(st_intron_2)
+st_intron_2_py0 = State(close_py_dist, name='i2cpy0')
+st_intron_2_py1 = State(close_py_dist, name='i2cpy1')
+st_intron_2_py2 = State(close_py_dist, name='i2cpy2')
+st_intron_2_py3 = State(close_py_dist, name='i2cpy3')
+st_intron_2_fill = State(DiscreteDistribution({'c': 0.49, 't': 0.49, 'a': 0.2}), name='i2fill')
 
 st_intron_2c = State(DiscreteDistribution({'c': 0.5, 't': 0.5}), name='intron2c')
 states.append(st_intron_2c)
-
 st_intron_2a = State(DiscreteDistribution({'a': 1}), name='intron2a')
 states.append(st_intron_2a)
-
 st_intron_2g = State(DiscreteDistribution({'g': 1}), name='intron2g')
 states.append(st_intron_2g)
 
@@ -192,7 +175,22 @@ transition_maker(model,
                  [(st_intron_0, 1)])
 transition_maker(model,
                  [st_intron_0],
-                 [(st_intron_0, 0.9), (st_intron_0c, 0.1)])
+                 [(st_intron_0, 0.9), (st_intron_0_py0, 0.1)])
+transition_maker(model,
+                 [st_intron_0_py0],
+                 [(st_intron_0_py1, 1)])
+transition_maker(model,
+                 [st_intron_0_py1],
+                 [(st_intron_0_py2, 1)])
+transition_maker(model,
+                 [st_intron_0_py2],
+                 [(st_intron_0_py3, 1)])
+transition_maker(model,
+                 [st_intron_0_py3],
+                 [(st_intron_0_fill, 1)])
+transition_maker(model,
+                 [st_intron_0_fill],
+                 [(st_intron_0c, 1)])
 transition_maker(model,
                  [st_intron_0c],
                  [(st_intron_0a, 1)])
@@ -225,7 +223,24 @@ transition_maker(model,
 
 transition_maker(model,
                  [st_intron_1],
-                 [(st_intron_1, 0.9), (st_intron_1c, 0.1)])
+                 [(st_intron_1, 0.9), (st_intron_1_py0, 0.1)])
+
+transition_maker(model,
+                 [st_intron_1_py0],
+                 [(st_intron_1_py1, 1)])
+transition_maker(model,
+                 [st_intron_1_py1],
+                 [(st_intron_1_py2, 1)])
+transition_maker(model,
+                 [st_intron_1_py2],
+                 [(st_intron_1_py3, 1)])
+transition_maker(model,
+                 [st_intron_1_py3],
+                 [(st_intron_1_fill, 1)])
+transition_maker(model,
+                 [st_intron_1_fill],
+                 [(st_intron_1c, 1)])
+
 transition_maker(model,
                  [st_intron_1c],
                  [(st_intron_1a, 1)])
@@ -258,7 +273,23 @@ transition_maker(model,
 
 transition_maker(model,
                  [st_intron_2],
-                 [(st_intron_2, 0.9), (st_intron_2c, 0.1)])
+                 [(st_intron_2, 0.9), (st_intron_2_py0, 0.1)])
+transition_maker(model,
+                 [st_intron_2_py0],
+                 [(st_intron_2_py1, 1)])
+transition_maker(model,
+                 [st_intron_2_py1],
+                 [(st_intron_2_py2, 1)])
+transition_maker(model,
+                 [st_intron_2_py2],
+                 [(st_intron_2_py3, 1)])
+transition_maker(model,
+                 [st_intron_2_py3],
+                 [(st_intron_2_fill, 1)])
+transition_maker(model,
+                 [st_intron_2_fill],
+                 [(st_intron_2c, 1)])
+
 transition_maker(model,
                  [st_intron_2c],
                  [(st_intron_2a, 1)])
