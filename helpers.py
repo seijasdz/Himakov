@@ -1,5 +1,27 @@
 from pomegranate import State
 from pomegranate import DiscreteDistribution
+from pomegranate import HiddenMarkovModel
+
+
+class ModelWraper:
+    def __init__(self):
+        self.model = HiddenMarkovModel()
+
+    def add_state(self, distribution, name):
+        state = State(distribution, name=name)
+        self.model.add_state(state)
+        return state
+
+    def bake(self):
+        self.model.bake()
+
+    def viterbi(self, seq):
+        return self.model.viterbi(seq)
+
+    def add_transition(self, states, next_state_data):
+        for state in states:
+            for next_data in next_state_data:
+                self.model.add_transition(state, next_data[0], next_data[1])
 
 
 def with_variations(dist, name):
